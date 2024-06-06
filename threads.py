@@ -4,11 +4,11 @@ from threading import Thread, Lock
 
 def separate_numbers(numbers, num_batches):
     """
-    Função que pega uma array de números inteiros com tamanho indefinido e separa em um numero determinado de lotes,
+    Função que pega uma array de números com tamanho indefinido e separa em um numero determinado de lotes,
     o intuito é que cada thread futuramente seja responsável por um lote
 
     Args:
-        numbers (array): lista de números inteiros para ser dividida
+        numbers (array): lista de números para ser dividida
         num_batches (int): numero de lotes que serão destinados aos threads
 
     Return:
@@ -28,7 +28,7 @@ def sum_numbers(numbers):
     Função que atualiza a variável global total_sum com a soma dos números da lista dada pelos parâmetros.
 
     Args:
-        numbers (array): lista de números inteiros a serem somados
+        numbers (array): lista de números a serem somados
     """
     global total_sum
     lock.acquire()
@@ -42,7 +42,7 @@ def sum_with_threads(numbers, num_threads):
     os threads sejam reunidos para concluir a soma de todos os números da lista inicial
 
     Args:
-        numbers (array): lista de números inteiros
+        numbers (array): lista de números
         num_threads (int): número de threads que deseja ser utilizado
 
     Return:
@@ -66,14 +66,12 @@ def sum_with_threads(numbers, num_threads):
     return total_sum
     
 
-# 4 somas diferentes realizadas por threads
+# 3 somas diferentes realizadas por threads
 soma1 = sum_with_threads(range(11), num_threads=2)
 soma2 = sum_with_threads(range(1001), num_threads=2)
 soma3 = sum_with_threads(range(1_000_001), num_threads=2)
-soma4 = sum_with_threads(range(1_000_000_001), num_threads=2)
 
-# Resultado das 4 somas anteriores
+# Resultado das 3 somas anteriores
 print('A soma dos numeros de 0 a 10 é: ' + str(soma1))
 print('A soma dos numeros de 0 a 1000 é: ' + str(soma2))
 print('A soma dos numeros de 0 a 1 milhão é: ' + str(soma3))
-print('A soma dos numeros de 0 a 1 bilhão é: ' + str(soma4))
